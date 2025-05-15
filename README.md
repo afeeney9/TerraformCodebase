@@ -69,10 +69,12 @@ flowchart LR
     Subnet[gallery-subnet<br/>10.0.0.0/16]
     VM[Compute Instance<br/>e2-standard-2]
     SQL[Cloud SQL<br/>MySQL 8.0]
+    Bucket[Google Cloud Storage]
   end
 
   VM -->|Private IP| SQL
-  VM -->|Public IP| Internet
+  VM -->|Public IP| Client
+  VM -->|Private IP| Bucket
   SQL -.->|Private Service<br/>Peering| VPC
   Firewall[Firewall<br/>80,443,3306] --> VM
   ServiceAccount --> VM
